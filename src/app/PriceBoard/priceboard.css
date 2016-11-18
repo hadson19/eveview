@@ -1,4 +1,10 @@
-
+html {
+    background-color: #000000;
+}
+.h1{
+    background-color: #000000;
+    color: #4cae4c;
+}
 .selected {
     background-color: #1f2f2f !important;
     color: #c0c9c7;
@@ -61,6 +67,7 @@
 }
 .heroes {
     background-color: #1d2528 !important;
+    color: #e4b9b9;
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;

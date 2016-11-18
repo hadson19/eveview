@@ -1,0 +1,74 @@
+<h1>{{title}}</h1>
+
+
+
+
+<h1> Price Data </h1>
+<h2 class="error" id="noData"> No Data Selected </h2>
+<div class="row">
+
+    <div class="col-xs-4">
+        <h2 class="heroes"> <button class="button" (click)="refreshData()">refresh data {{seconds}}</button></h2>
+        <ul class="heroes">
+            <li *ngFor="let data of priceBandA">
+                <ul>
+                    <li>item:  <a class="heroesa">{{data.itemname}}</a> region: <a class="heroesa">{{data.region}}</a></li>
+                    <li>
+                        station: <a class="heroesb">{{data.station}}</a>
+                    </li>
+                    <li>
+                        <table class="herotable">
+                            <tr>
+                                <td class="price">ask </td>
+                                <td class="alignright">volume </td>
+                                <td class="makeroom">  </td>
+                                <td class="price">bid </td>
+                                <td class="alignright">volume </td>
+                                <td class="price">range </td>
+                            </tr>
+                            <tr class="herotable" *ngFor="let md of data.l2pricedata" width="100em">
+                                <td class="price"> {{md.priceSell | moneyPipe}} </td>
+                                <td class="alignright">{{md.volSell | volPipe}} </td>
+                                <td class="makeroom">  </td>
+                                <td class="price">{{md.priceBuy | moneyPipe}} </td>
+                                <td class="alignright">{{md.volBuy | volPipe}} </td>
+                                <td class="price">{{md.Buyrange}} </td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-4">
+        <!--<h2 class="heroes">
+            <button class="button" (click)="getmoreData()">get more data </button></h2>-->
+        <ul class="heroes">
+            <li *ngFor="let data2 of priceBandItem">
+                item: <a class="heroesa">{{data2.itemname}}</a>
+                <table class="itemtable">
+                    <tr>
+
+                        <td class="price">ask </td>
+                        <td class="alignright">volume </td>
+                        <td class="makeroom">  </td>
+                        <td class="price">bid </td>
+                        <td class="alignright">volume </td>
+                        <td class="price">station </td>
+                    </tr>
+                    <tr class="itemtable" *ngFor="let md of data2.l2pricedata" width="200em">
+
+                        <td class="price"> {{md.priceSell | moneyPipe}} </td>
+                        <td class="alignright">{{md.volSell | volPipe}} </td>
+                        <td class="makeroom">  </td>
+                        <td class="price">{{md.priceBuy | moneyPipe}} </td>
+                        <td class="alignright">{{md.volBuy | volPipe}} </td>
+                        <td class="alignright"> {{md.location}} </td>
+                    </tr>
+                </table>
+
+            </li>
+        </ul>
+    </div>
+</div>
+

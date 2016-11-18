@@ -6,8 +6,7 @@ import { ItemType } from '../ItemsByGroup/ItemTypes';
 import { items, Level2, PriceData, PriceBand } from './pricetypes';
 import { ISystemShort } from '../regions/IRegions';
 import { EvePricingService } from './evepricing.service';
-import { moneyPipe } from './moneypipe';
-import { volPipe } from './volpipe';
+
 import 'rxjs/Rx';
 
 @Component({

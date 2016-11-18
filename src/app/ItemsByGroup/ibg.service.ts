@@ -11,6 +11,7 @@ import { ItemTypesA } from './ItemTypes';
 import { PriceTypes, items, PriceData } from '../PriceBoard/PriceTypes';
 
 import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/from';
 //import {ItemTypes} from './ItemTypes';
 //  var systemshort: ISystemShort = <ISystemShort>{};
 

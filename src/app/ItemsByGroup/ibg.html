@@ -14,18 +14,8 @@
             </li>
         </ul>
     </div>
-    <!-- <div class="col-xs-3">
-          <h3>  { subgroup } </h3>
-     <ul class="heroes">
-         <li *ngFor="let childItem of selGrps" [class.selected]="hero === selectedHero" (click)="onSelectItemGroup(childItem)">
-          {{ childItem.name }}
-         </li>
-     </ul>
-     </div>-->
 
-    <div class="col-xs-3">
-
-        <!--<h3><button (click)="getbom()">replace with BOM</button></h3>-->
+    <div class="col-xs-2">
 
         <ul class="doinline">
             <li><h3>items:</h3></li>
@@ -38,59 +28,46 @@
         </ul>
     </div>
     <div class="col-xs-4">
-        <h3>  { current selections } (click to remove) </h3>
+        <h3>   current selections  - click to remove </h3>
         <h3> (click BOM for build price) </h3>
-        <!--<ul class="station">
-             <li *ngFor="let it of selItemTypes" [class.halselected]="hal === selectedHal" (click)="onRemoveItem(it)">
-                 <img src = "{{it.type.icon.href}}" class="image">  <div> {{ it.type.name }}  </div> <img src="http://evemarket.foxjazz.net/images/bom.png" alt="bom" class=imager>
-                 <div color="BD0913">Alert</div> drops below Jita: {{it.jitaprice | moneyPipe}}
 
-             </li>
-          </ul>-->
-        <table class="itemtable">
-            <tr>
-                <td>Img</td>
-                <td>type</td>
-                <td class="makeroom">  </td>
-                <td>bom</td>
+                <table class="itemtable">
+                    <tr>
+                        <td>Img</td>
+                        <td>type</td>
+                        <td class="makeroom">  </td>
+                        <td>bom</td>
 
-                <td class="price">Jita price </td>
-                <!-- <td class="price">Price falls below event</td>
-                 <td class="price">input price</td>
-                 <td>Save Events</td>-->
+                        <td class="price">Jita price </td>
 
-            </tr>
-            <tr  *ngFor="let it of selItemTypes" [class.itemselected]="item === selectedItem" (click)="onRemoveItem(it)">
-                <td class="image"> <img src = "{{it.type.icon.href}}" class="image">  </td>
-                <td> {{it.type.name}} </td>
-                <td class="makeroom">  </td>
-                <td class="bomtext" alt="bom"> <img src="assets/images/bom.png" alt="bom"> </td>
+                    </tr>
+                    <tr  *ngFor="let it of selItemTypes" [class.itemselected]="item === selectedItem" (click)="onRemoveItem(it)">
+                        <td class="image"> <img src = "{{it.type.icon.href}}" class="image">  </td>
+                        <td> {{it.type.name}} </td>
+                        <td class="makeroom">  </td>
+                        <td class="bomtext" alt="bom"> <img src="assets/images/bom.png" alt="bom"> </td>
 
-                <td class="price">{{it.Jitaprice | moneyPipe}} </td>
-                <!--<td class="price" alt="fallsbelow">below: <input class="input" alt="fallsbelow" type="number" #box (keyup)="it.Alertprice = box.value"> </td>
-                <td class="price">{{it.Alertprice | moneyPipe}} </td>
-                <td class="image>"><img src="assets/images/save.png" alt="save event"></td>-->
-            </tr>
-        </table>
-        <h3>Preferred trade hub:  {{yourHub.name}}</h3>
-        <ul class="station">
-            <li *ngFor="let h of tradeHubs.Hubs" [class.halselected]="hal === selectedHal" (click)="onSelectTradeHub(h)">
-                {{h.name}}
-            </li>
-        </ul>
-        <h3> BOM </h3>
-        <ul class="station">
-            <li *ngFor="let b of selBom" [class.halselected]="hal === selectedHal">
-                id: {{ b.typeid }} quantity: {{b.quantity}}
-            </li>
-        </ul>
+                        <td class="price">{{it.Jitaprice | moneyPipe}} </td>
+                    </tr>
+                </table>
 
-        <h3> BOM results {{lastHub.name}} </h3>
-        <ul class="station">
-            <li *ngFor="let resit of itemBuild.items">
-                {{resit.description}}  price: {{resit.price | moneyPipe }}
-            </li>
-        </ul>
+                <h3>Preferred trade hub:  {{yourHub.name}}</h3>
+                <ul class="station">
+                    <li *ngFor="let h of tradeHubs.Hubs" [class.halselected]="hal === selectedHal" (click)="onSelectTradeHub(h)">
+                        {{h.name}}
+                    </li>
+                </ul>
+                <h3> BOM </h3>
+                <ul class="station">
+                    <li *ngFor="let b of selBom" [class.halselected]="hal === selectedHal">
+                        id: {{ b.typeid }} quantity: {{b.quantity}}
+                    </li>
+                </ul>
+                <h3> BOM results {{lastHub.name}} </h3>
+                <ul class="station">
+                    <li *ngFor="let resit of itemBuild.items">
+                        {{resit.description}}  price: {{resit.price | moneyPipe }}
+                    </li>
+                </ul>-->
     </div>
-
 </div>

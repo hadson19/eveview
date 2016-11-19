@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {BitService} from './bitservice';
 import {IData} from "./bit";
 import 'rxjs/add/observable/interval';
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/share';
 
 
@@ -15,7 +15,7 @@ import 'rxjs/add/operator/share';
     providers: [BitService]
 })
 
-export class HomeComponent  implements OnInit {
+export class HomeComponent  implements OnInit, OnDestroy {
     constructor(bs: BitService){
         this.bitService = bs;
         /*Observable.interval(1000)
@@ -27,10 +27,12 @@ export class HomeComponent  implements OnInit {
     private bitService;
     public obj;
     public cryptice = {"BTC":0.01292,"USD":1.67,"EUR":1.15};
+    private ct;
     public BTC;
     public USD;
     public EUR;
     public xs;
+    private keep;
     //private datatimer: Observable<Object>;
     public test(){
         this.getData();
@@ -38,13 +40,14 @@ export class HomeComponent  implements OnInit {
     }
     private getData(){
 
-        Observable.timer(0, 2000).flatMap(_ => {
+        this.keep = Observable.timer(0, 2000).flatMap(_ => {
             return this.bitService.getData();
         }).subscribe(res2 => {
+            this.ct = res2;
             this.cryptice = res2;
-            this.BTC = this.cryptice.BTC;
-            this.USD = this.cryptice.USD;
-            this.EUR = this.cryptice.EUR;
+            this.BTC = this.ct.BTC;
+            this.USD = this.ct.USD;
+            this.EUR = this.ct.EUR;
         }, err => console.log('Something went wrong: ' + err.message));
 /*
             this.bitService.getData().subscribe(res2 => {
@@ -66,5 +69,9 @@ export class HomeComponent  implements OnInit {
         obs.subscribe(value => console.log("observer 1 received " + value));
 
         obs.subscribe(value => console.log("observer 2 received " + value));*/
+    }
+    ngOnDestroy()
+    {
+        this.keep().unsubscribe();
     }
 }

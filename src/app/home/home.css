@@ -2,3 +2,36 @@
 	background-color: #1d2528;
 	color: #c9c9d3;
 }
+.button{
+	background-color: #1d2528;
+	color: lightgreen;
+}
+.itemtable {
+	background-color: #1d2528 !important;
+	margin: 0 0 2em 0;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: 100;
+	font-size: 12;
+	width: 20em;
+	align: center;
+}
+.itemtable tr {
+	height: 2em;
+	color: lightgrey;
+}
+.trtable{
+	height: 2em;
+
+}
+.itemtable tr td {
+	color: #64c94d;
+	padding: 10px;
+	height: 2.6em;
+	margin: 3em;
+}
+.itemtable tr th {
+	color: #ac8ec9;
+	padding: 10px;
+	height: 2.6em;
+	margin: 3em;
+}

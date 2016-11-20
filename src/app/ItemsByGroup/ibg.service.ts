@@ -42,7 +42,7 @@ export class ibgService {
     }
     public getBOM(typeid: string): Observable<bom[]> {
         //let uri = 'http://evecore.azurewebsites.net/api/blueprint/' + typeid;
-        let uri = 'https://54.227.207.106:3001/api/evemarket/' + typeid;
+        let uri = 'http://bp.foxjazz.net/eveBPL?typeid=' + typeid;
         return this.http.get(uri)
             .map((res: Response) => res.json());
 

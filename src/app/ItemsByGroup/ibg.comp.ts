@@ -5,6 +5,7 @@ import { ItemTypesA, ItemType } from './ItemTypes';
 import { Istringdistance, stringdistance } from '../algs/stringdistance';
 import { TreeViewComponent } from '../common/treeview.comp';
 // import { DonkeyComponent } from '../common/donkey.comp';
+import {Observable} from "rxjs/Observable";
 
 @Component ({
     selector: 'as-sel-groups',
@@ -197,6 +198,7 @@ export class ibgComponent implements OnInit{
 
 
 //60003760
+
     public setHubPrice(type: ItemType, hub: Hub)
     {
         this.itgs.getPriceDataUri(type.id,hub.regionId).subscribe(res => {
@@ -240,7 +242,7 @@ export class ibgComponent implements OnInit{
         );
     }*/
 
-    private getTypes() {
+    private getTypes(): any {
         let res: string;
         res = localStorage.getItem('SelEveItems');
         if(res != null && res.indexOf('marketGroup') > 0)
@@ -261,6 +263,7 @@ export class ibgComponent implements OnInit{
         else {
             this.selItemTypes = new Array<ItemType>();
         }
+        return "nothing";
     }
 
     private saveEvent(item: ItemType)
@@ -351,18 +354,26 @@ export class ibgComponent implements OnInit{
             this.itmtypes = res3.items; });
     }
 
+    private sub;
+    doTimer(){
 
+        this.sub = Observable.timer(1000, 300000).flatMap(_ => {
+           return this.getTypes();
+        });
+    }
 
     ngOnInit() {
         //this.ItemService.setGroupData();
         // this.itgs.getAccessToken().subscribe(res => {
         //     let xxx = res
         // });
-        this.getTypes();
+        this.doTimer();
         this.getGroups();
         this.itgs.getUnderData('https://crest-tq.eveonline.com/market/types/?group=https://crest-tq.eveonline.com/market/groups/4/')
             .subscribe(res3 => {
                 this.itmtypes = res3.items;
             });
+
+
     }
 }

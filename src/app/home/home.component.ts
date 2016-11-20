@@ -26,7 +26,7 @@ export class HomeComponent  implements OnInit, OnDestroy {
     }
     private bitService;
     public obj;
-    public cryptice = {"BTC":0.01292,"USD":1.67,"EUR":1.15};
+    public cryptice;// = {"BTC":0.01292,"USD":1.67,"EUR":1.15};
     private ct;
     public BTC;
     public USD;
@@ -40,7 +40,7 @@ export class HomeComponent  implements OnInit, OnDestroy {
     }
     private getData(){
 
-        this.keep = Observable.timer(0, 2000).flatMap(_ => {
+        this.keep = Observable.timer(1000, 2000).flatMap(_ => {
             return this.bitService.getData();
         }).subscribe(res2 => {
             this.ct = res2;
@@ -72,6 +72,7 @@ export class HomeComponent  implements OnInit, OnDestroy {
     }
     ngOnDestroy()
     {
-        this.keep().unsubscribe();
+       /* if(this.keep)
+            this.keep().unsubscribe();*/
     }
 }

@@ -99,7 +99,14 @@ export class ibgComponent implements OnInit{
     onSelectTradeHub(h: Hub){
         this.yourHub = h;
     }
-
+    private getHub(hub: string): Hub
+    {
+        for( let i = 0; i < this.tradeHubs.Hubs.length; i++)
+        {
+            if(this.tradeHubs.Hubs[i].name === hub)
+                return this.tradeHubs.Hubs[i];
+        }
+    }
     onGetBOM(item: ItemType) {
         this.itemBuild = new ItemBuildCls();
         this.itemBuild.items = new Array<BItem>();
@@ -189,13 +196,41 @@ export class ibgComponent implements OnInit{
     }
 
 
+//60003760
+    public setHubPrice(type: ItemType, hub: Hub)
+    {
+        this.itgs.getPriceDataUri(type.id,hub.regionId).subscribe(res => {
+                let retval  = NaN;
+                for (let ll of res.items) {
+                    if (ll.location.id === hub.stationId && ll.buy === false) {
+                        if (isNaN(retval) || ll.price < retval)
+                            retval = ll.price;
+                    }
+                }
+                switch(hub.name){
+                    case 'Jita': type.Jitaprice = retval; break;
+                    case 'Amarr': type.Amarrprice = retval; break;
+                    case 'Dodixie': type.Dodixieprice = retval; break;
+                    case 'Rens': type.Rensprice = retval; break;
+                    case 'Hek': type.Hekprice = retval; break;
+/*
+                    case 'Tash-Murkon': type.Tashprice = retval; break;
+                    case 'Oursulaert': type.Ourprice = retval; break;
+*/
 
-    public getJitaPrice(type: ItemType, Region: Number)
+                }
+
+            }
+        );
+
+    }
+
+    /*public getJitaPrice(type: ItemType, Region: Number)
     {
         this.itgs.getPriceDataUri(type.id,Region).subscribe(res => {
                 let retval  = NaN;
                 for (let ll of res.items) {
-                    if (ll.location.id === 60003760 && ll.buy === false) {
+                    if (ll.location.id === jitaHub.location && ll.buy === false) {
                         if (isNaN(retval) || ll.price < retval)
                             retval = ll.price;
                     }
@@ -203,7 +238,7 @@ export class ibgComponent implements OnInit{
                 type.Jitaprice = retval;
             }
         );
-    }
+    }*/
 
     private getTypes() {
         let res: string;
@@ -214,7 +249,13 @@ export class ibgComponent implements OnInit{
             this.selItemTypes = restry;
             for(let it of this.selItemTypes)
             {
-                this.getJitaPrice(it,this.jitaHub.regionId);
+                this.setHubPrice(it,this.getHub('Jita'));
+                this.setHubPrice(it,this.getHub('Amarr'));
+                this.setHubPrice(it,this.getHub('Hek'));
+                this.setHubPrice(it,this.getHub('Rens'));
+//                this.setHubPrice(it,this.getHub('Tash-Murkon'));
+                this.setHubPrice(it,this.getHub('Dodixie'));
+  //              this.setHubPrice(it,this.getHub('Oursulaert'));
             }
         }
         else {
@@ -263,7 +304,15 @@ export class ibgComponent implements OnInit{
                 return;
             }
         }
-        this.getJitaPrice(it,this.jitaHub.regionId);
+        this.setHubPrice(it,this.getHub('Jita'));
+        this.setHubPrice(it,this.getHub('Amarr'));
+        this.setHubPrice(it,this.getHub('Dodixie'));
+        this.setHubPrice(it,this.getHub('Hek'));
+        this.setHubPrice(it,this.getHub('Rens'));
+/*
+        this.setHubPrice(it,this.getHub('Tash-Murkon'));
+        this.setHubPrice(it,this.getHub('Oursulaert'));
+*/
         this.selItemTypes.push(it);
         localStorage.setItem('SelEveItems', JSON.stringify(this.selItemTypes));
     }

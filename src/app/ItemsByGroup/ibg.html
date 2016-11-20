@@ -3,7 +3,7 @@
 <h2> Categories  </h2>
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-3">
         <ul class="heroes">
             <li *ngFor="let oitem of itemTopGroups" [class.selected]="hero === selectedHero"  (click)="onSelectItemTopGroup(oitem)">
                 <span (click)="toggle(oitem)"> {{ oitem.name }}</span>
@@ -15,7 +15,7 @@
         </ul>
     </div>
 
-    <div class="col-xs-2">
+    <div class="col-xs-4">
 
         <ul class="doinline">
             <li><h3>pick items:</h3></li>
@@ -33,12 +33,20 @@
 
                 <table class="itemtable">
                     <tr>
-                        <td>Img</td>
-                        <td>type</td>
-                        <td class="makeroom">  </td>
-                        <td>bom</td>
+                        <th>Img</th>
+                        <th>type</th>
+                        <th class="makeroom">  </th>
+                        <th>bom</th>
 
-                        <td class="price">Jita price </td>
+                        <th class="price">Jita price </th>
+                        <th class="price">Amarr price</th>
+                        <th class="price">Dodixie price</th>
+                        <th class="price">Rens price</th>
+                        <th class="price">Hek price </th>
+<!--
+                        <td class="price">Tash-Murkon price </td>
+                        <td class="price">Oursulaert price </td>
+-->
 
                     </tr>
                     <tr  *ngFor="let it of selItemTypes" [class.itemselected]="item === selectedItem" (click)="onRemoveItem(it)">
@@ -47,7 +55,13 @@
                         <td class="makeroom">  </td>
                         <td class="bomtext" alt="bom"> <img src="assets/images/bom.png" alt="bom"> </td>
 
-                        <td class="price">{{it.Jitaprice | moneyPipe}} </td>
+                        <td class="price">{{it.Jitaprice | mPipe}} </td>
+                        <td class="price">{{it.Amarrprice | mPipe}} </td>
+                        <td class="price">{{it.Dodixieprice | mPipe}} </td>
+                        <td class="price">{{it.Rensprice | mPipe}} </td>
+                        <td class="price">{{it.Hekprice | mPipe}} </td>
+                     <!--   <td class="price">{{it.Tashprice | moneyPipe}} </td>
+                        <td class="price">{{it.Ourprice | moneyPipe}} </td>-->
                     </tr>
                 </table>
 

@@ -1,9 +1,10 @@
+/*
 :host {
     display: block;
-    border: 1px solid black;
     background-color: #1d2528;
     color: #ade6fb;
 }
+*/
 
 button {
     display: block;
@@ -24,12 +25,13 @@ button {
 }
 
 .itemtable {
-    background-color: #1f2f2f !important;
+    background-color: #1f2f2f;
     margin: 0 0 2em 0;
     color: #a8af87;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 100;
-    font-size: 9;
+    font-size: 10;
+
 }
 
 .image {
@@ -37,11 +39,17 @@ button {
     border-collapse: collapse;
 }
 
-.itemtable .tr {
-    width: 110em;
+.itemtable tr {
+
     color: #c0c9c7;
     height: 1.6em;
 
+}
+.itemtable tr th{
+    min-width: 3em;
+}
+.itemtable tr td{
+    padding: .4em;
 }
 .input{
     background-color: #1f2f2f;

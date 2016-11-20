@@ -2,7 +2,7 @@
  * Created by fox21 on 11/16/2016.
  */
 import { NgModule } from '@angular/core';
-import { moneyPipe } from '../PriceBoard/moneypipe';
+import { moneyPipe, mPipe } from '../PriceBoard/moneypipe';
 import { volPipe } from '../PriceBoard/volpipe';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
@@ -12,6 +12,7 @@ import { ibgComponent } from './index';
 @NgModule({
     declarations: [
         moneyPipe,
+        mPipe,
         volPipe,
         TreeViewComponent,
         ibgComponent

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { ibgService } from './ibg.service';
 import { ItemGroups, ItemGroup, ItemGroupsCls, Blueprint, bom, ItemBuild, BItem, ItemBuildCls, TradeHubs, Hub } from './interface';
 import { ItemTypesA, ItemType } from './ItemTypes';
@@ -13,7 +13,7 @@ import {Observable} from "rxjs/Observable";
     styleUrls: ['app/itemsByGroup/ibg.css'],
     providers: [ibgService, TreeViewComponent]
 })
-export class ibgComponent implements OnInit{
+export class ibgComponent implements OnInit, OnDestroy {
     public subgrps: Array<ItemGroup>;
     public dondata = 'the data';
     private  itemGroups: Array<ItemGroup>;
@@ -37,8 +37,11 @@ export class ibgComponent implements OnInit{
     public priceBands: Array<number>;
     public lastHub: Hub;
     public tradeHubs: TradeHubs;
-
+    public t1: number;
+    public tdisplay: string;
     constructor(private itgs: ibgService) {
+        this.t1 = 0;
+        this.tdisplay = "tick: ";
         this.invalidate = false;
         this.itemBuild = new ItemBuildCls();
         this.ItemService = itgs;
@@ -357,23 +360,35 @@ export class ibgComponent implements OnInit{
     private sub;
     doTimer(){
 
-        this.sub = Observable.timer(1000, 300000).flatMap(_ => {
+        this.sub = Observable.timer(10000, 150000).flatMap(_ => {
+            this.t1 += 1;
+            this.tdisplay = "tick: " + this.t1;
+            if(this.t1 > 2)
+                this.tdisplay = "";
            return this.getTypes();
-        });
+        }).subscribe();
     }
-
+public subunder;
     ngOnInit() {
         //this.ItemService.setGroupData();
         // this.itgs.getAccessToken().subscribe(res => {
         //     let xxx = res
         // });
+        this.getTypes();
         this.doTimer();
         this.getGroups();
-        this.itgs.getUnderData('https://crest-tq.eveonline.com/market/types/?group=https://crest-tq.eveonline.com/market/groups/4/')
+        this.subunder = this.itgs.getUnderData('https://crest-tq.eveonline.com/market/types/?group=https://crest-tq.eveonline.com/market/groups/4/')
             .subscribe(res3 => {
                 this.itmtypes = res3.items;
             });
 
+
+    }
+    ngOnDestroy(){
+        if(this.subunder)
+            this.subunder.unsubscribe();
+        if(this.sub)
+            this.sub.unsubscribe();
 
     }
 }

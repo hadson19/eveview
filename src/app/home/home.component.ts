@@ -31,6 +31,7 @@ export class HomeComponent  implements OnInit, OnDestroy {
     public BTC;
     public USD;
     public EUR;
+    public BCD;
     public xs;
     private keep;
     //private datatimer: Observable<Object>;
@@ -48,6 +49,7 @@ export class HomeComponent  implements OnInit, OnDestroy {
             this.BTC = this.ct.BTC;
             this.USD = this.ct.USD;
             this.EUR = this.ct.EUR;
+            this.BCD = Math.round(1/this.BTC*this.USD*100)/100;
         }, err => console.log('Something went wrong: ' + err.message));
 /*
             this.bitService.getData().subscribe(res2 => {
